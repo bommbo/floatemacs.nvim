@@ -96,7 +96,7 @@ local function open_emacs(opts)
 	print(file_names)
 	vim.cmd.startinsert()
 	---@diagnostic disable-next-line: cast-local-type
-	vim.fn.termopen("emacs -nw", opts)
+	vim.fn.termopen("emacs", "-nw", opts)
 
 	-- tempname = vim.fn.tempname()
 	--
