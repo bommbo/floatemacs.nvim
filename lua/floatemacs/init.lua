@@ -56,7 +56,7 @@ end
 local function open_emacs(opts)
 	prev_win = vim.api.nvim_get_current_win()
 	---@diagnostic disable-next-line: cast-local-type
-	local win = require("emacs.float_win")
+	local win = require("floatemacs.float_win")
 	win:Create({
 		width = default_opts.size.width,
 		height = default_opts.size.height,
