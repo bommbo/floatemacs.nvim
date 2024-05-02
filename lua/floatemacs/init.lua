@@ -78,20 +78,23 @@ local function open_emacs(opts)
 	end
 	vim.cmd.startinsert()
 	---@diagnostic disable-next-line: cast-local-type
-	tempname = vim.fn.tempname()
-	vim.fn.termopen('emacs -nw"' .. tempname .. '"', {
-		cwd = opts and opts.cwd or default_opts.command_args.cwd,
-		on_exit = function()
-			if vim.api.nvim_win_is_valid(winnr) then
-				close_float_win()
-				open(
-					opts and opts.open_file or default_opts.command_args.open_file,
-					opts and opts.open_dir or default_opts.command_args.open_dir
-				)
-			end
-			vim.fn.delete(tempname)
-		end,
-	})
+	vim.fn.termopen("emacs -nw", opts)
+
+	-- tempname = vim.fn.tempname()
+	--
+	-- vim.fn.termopen('emacs -nw"' .. tempname .. '"', {
+	-- 	cwd = opts and opts.cwd or default_opts.command_args.cwd,
+	-- 	on_exit = function()
+	-- 		if vim.api.nvim_win_is_valid(winnr) then
+	-- 			close_float_win()
+	-- 			open(
+	-- 				opts and opts.open_file or default_opts.command_args.open_file,
+	-- 				opts and opts.open_dir or default_opts.command_args.open_dir
+	-- 			)
+	-- 		end
+	-- 		vim.fn.delete(tempname)
+	-- 	end,
+	-- })
 end
 
 ---@param opts nil | FloatEmacsWindowOptions
